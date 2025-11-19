@@ -45,10 +45,33 @@ mafxer/
 
 ### Prerequisites
 
-- Python 3.7 or higher
-- pip package manager
+- Python 3.10 or higher
+- [Poetry](https://python-poetry.org/) for dependency management (recommended) or pip
 
-### Setup
+### Setup with Poetry (Recommended)
+
+1. Install Poetry if you haven't already:
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+2. Clone the repository:
+```bash
+git clone https://github.com/RainBoltz/mafxer.git
+cd mafxer
+```
+
+3. Install dependencies with Poetry:
+```bash
+poetry install
+```
+
+4. Activate the virtual environment:
+```bash
+poetry shell
+```
+
+### Alternative Setup with pip
 
 1. Clone the repository:
 ```bash
@@ -56,14 +79,50 @@ git clone https://github.com/RainBoltz/mafxer.git
 cd mafxer
 ```
 
-2. Install required dependencies:
+2. (Optional) Create a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
 ## Usage
 
-### 1. Visualize Currency Pairs
+### Quick Start - Advanced Backtesting (New in v2.0!)
+
+Run comprehensive backtesting with multiple strategies:
+
+```bash
+# With Poetry
+poetry run python advanced_backtest.py
+
+# Or use make
+make run
+
+# With pip
+python advanced_backtest.py
+```
+
+This will:
+1. Test 14+ different trading strategies
+2. Compare performance with and without risk management
+3. Optimize SMA parameters
+4. Generate detailed reports and CSV files
+
+**Best Results:**
+- **RSI Strategy**: 67.26% win rate, 1.263 profit factor, 15.4% ROI
+- **Bollinger Bands**: 64.31% win rate, 1.211 profit factor, 13.6% ROI
+- **Mean Reversion**: 63.33% win rate, 1.214 profit factor, 11.9% ROI
+
+See `ADVANCED_FEATURES.md` for detailed documentation.
+
+### Original Scripts
+
+#### 1. Visualize Currency Pairs
 
 **Simple single-pair visualization:**
 ```bash
@@ -77,7 +136,7 @@ python plot_ohlc.py
 ```
 Shows correlated currency pairs (EUR/USD, EUR/TRY, USD/TRY) with SMA crossover signals.
 
-### 2. Backtest Trading Strategy
+#### 2. Backtest Trading Strategy
 
 **Single-pair backtesting:**
 ```bash

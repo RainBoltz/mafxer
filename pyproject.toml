@@ -1,0 +1,108 @@
+[tool.poetry]
+name = "mafxer"
+version = "2.0.0"
+description = "Moving Average Forex Exchange Rate Trading Framework - Advanced algorithmic trading backtesting and analysis"
+authors = ["RainBoltz <rainboltz@example.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/RainBoltz/mafxer"
+repository = "https://github.com/RainBoltz/mafxer"
+keywords = ["forex", "trading", "backtesting", "algorithmic-trading", "technical-analysis"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Developers",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.1.0"
+numpy = "^1.24.0"
+matplotlib = "^3.8.0"
+mplfinance = "^0.12.10b0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+black = "^23.7.0"
+isort = "^5.12.0"
+mypy = "^1.5.0"
+pylint = "^2.17.0"
+flake8 = "^6.1.0"
+pre-commit = "^3.3.3"
+
+[tool.poetry.scripts]
+mafxer = "advanced_backtest:main"
+mafxer-simple = "mono_trade:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py310', 'py311', 'py312']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+include_trailing_comma = true
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+follow_imports = "normal"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["mpl_finance.*", "matplotlib.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=. --cov-report=html --cov-report=term-missing"
+
+[tool.pylint.messages_control]
+disable = [
+    "C0103",  # Invalid name
+    "C0114",  # Missing module docstring
+    "R0913",  # Too many arguments
+    "R0914",  # Too many local variables
+]
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.coverage.run]
+omit = [
+    "*/tests/*",
+    "*/venv/*",
+    "simple_ohlc.py",
+    "plot_ohlc.py",
+]
