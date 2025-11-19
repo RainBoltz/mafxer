@@ -1,0 +1,16 @@
+# MAFXER - Forex Trading Framework Dependencies
+
+# Data manipulation and analysis
+pandas>=1.3.0
+
+# Numerical computing
+numpy>=1.21.0
+
+# Visualization and plotting
+matplotlib>=3.4.0
+
+# Financial charting (candlestick charts)
+mpl-finance>=0.10.1
+
+# Alternative to mpl-finance if deprecated
+# mplfinance>=0.12.0
